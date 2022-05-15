@@ -25,6 +25,7 @@ namespace Assignment_DotNet6.Controllers
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginDetails model)
         {
+            _logger.LogInformation("asjdaskldjhaskjfhasdkfjhakldfhaksdjfhkalsjdfhaskdjfhasjkldfhaskldfhaskldfhd");
             var resp = await dbService.AuthenticateUser(model);
             if (resp != null && resp.AuthenticationStatus == Entities.UserAuthenticationStatus.Authenticated)
             {
