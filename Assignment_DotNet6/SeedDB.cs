@@ -36,19 +36,18 @@ namespace Assignment_DotNet6
                 }
             }
             #endregion
-           // SeedDB.DeInitialize(serviceProvider);
+            // SeedDB.DeleteAllData(serviceProvider);
         }
 
-
-        public static void DeInitialize(IServiceProvider serviceProvider)
+        public static void DeleteAllData(IServiceProvider serviceProvider)
         {
             var context = serviceProvider.GetRequiredService<DataContext>();
-            var userManager = serviceProvider.GetRequiredService<UserManager<Doctor>>();
 
             context.Database.EnsureCreated();
             context.Doctors.RemoveRange(context.Doctors);
             context.Patients.RemoveRange(context.Patients);
-
+            context.Visits.RemoveRange(context.Visits);
+            context.SaveChanges();
 
 
         }

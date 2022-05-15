@@ -11,8 +11,31 @@ namespace Assignment_DotNet6.Core
 {
     public static class ServiceExtension
     {
-        public static IServiceCollection ConfigureServices(this IServiceCollection services, ConfigurationManager configuration)
+        public static IServiceCollection ConfigureServices(this IServiceCollection services, ConfigurationManager configuration, IWebHostEnvironment environment)
         {
+
+            var env = environment.EnvironmentName;
+            //var builder = new ConfigurationBuilder()
+            //.SetBasePath(Path.GetPathRoot(Environment.CurrentDirectory))
+            //.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            //.AddJsonFile($"appsettings.{environment.EnvironmentName}.json", reloadOnChange: true, optional: true)
+            //.AddEnvironmentVariables();
+
+
+
+            //Configuration = builder.Build();
+            //var uri = Configuration["ConnectionStrings:ElasticSearchConnection"];
+            //Log.Logger = new LoggerConfiguration()
+            //    .Enrich.FromLogContext()
+            //    .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri(uri))
+            //    {
+            //        AutoRegisterTemplate = true,
+            //    })
+            //.CreateLogger();
+
+
+
+
             var connection = configuration.GetConnectionString("connectionString") ?? throw new ArgumentNullException("Missing connectionString.");
 
             services.AddDbContext<DataContext>(options =>
